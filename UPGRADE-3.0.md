@@ -963,18 +963,18 @@ UPGRADE FROM 2.x to 3.0
 
    | Old name | New name
    | -------- | ---
-   | `Symfony\Component\HttpKernel\Debug\ErrorHandler` | `Symfony\Component\Debug\ErrorHandler`
-   | `Symfony\Component\HttpKernel\Debug\ExceptionHandler` | `Symfony\Component\Debug\ExceptionHandler`
-   | `Symfony\Component\HttpKernel\Exception\FatalErrorException` | `Symfony\Component\Debug\Exception\FatalErrorException`
-   | `Symfony\Component\HttpKernel\Exception\FlattenException` | `Symfony\Component\Debug\Exception\FlattenException`
+   | nnn `Symfony\Component\HttpKernel\Debug\ErrorHandler` | `Symfony\Component\Debug\ErrorHandler`
+   | nnn `Symfony\Component\HttpKernel\Debug\ExceptionHandler` | `Symfony\Component\Debug\ExceptionHandler`
+   | nnn `Symfony\Component\HttpKernel\Exception\n` | `Symfony\Component\Debug\Exception\FatalErrorException`
+   | xxx `Symfony\Component\HttpKernel\Exception\FlattenException` | `Symfony\Component\Debug\Exception\FlattenException`
 
- * The `Symfony\Component\HttpKernel\EventListener\ExceptionListener` now
+ * nnn The `Symfony\Component\HttpKernel\EventListener\ExceptionListener` now
    passes the Request format as the `_format` argument instead of `format`.
 
- * The `Symfony\Component\HttpKernel\DependencyInjection\RegisterListenersPass` has been renamed to
+ * nnn The `Symfony\Component\HttpKernel\DependencyInjection\RegisterListenersPass` has been renamed to
    `Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass` and moved to the EventDispatcher component.
 
-### Locale
+### nnn Locale
 
  * The Locale component was removed and replaced by the Intl component.
    Instead of the methods in `Symfony\Component\Locale\Locale`, you should use
@@ -989,7 +989,7 @@ UPGRADE FROM 2.x to 3.0
    | `Locale::getDisplayLocales()` | `Intl::getLocaleBundle()->getLocaleNames()`
    | `Locale::getLocales()` | `array_keys(Intl::getLocaleBundle()->getLocaleNames())`
 
-### PropertyAccess
+### nnn PropertyAccess
 
  * Renamed `PropertyAccess::getPropertyAccessor` to `createPropertyAccessor`.
 
@@ -1013,8 +1013,8 @@ UPGRADE FROM 2.x to 3.0
 
  * Some route settings have been renamed:
 
-     * The `pattern` setting has been removed in favor of `path`
-     * The `_scheme` and `_method` requirements have been moved to the `schemes` and `methods` settings
+     * nnn The `pattern` setting has been removed in favor of `path`
+     * xxx The `_scheme` and `_method` requirements have been moved to the `schemes` and `methods` settings
 
    Before:
 
@@ -1062,14 +1062,14 @@ UPGRADE FROM 2.x to 3.0
    $route->setSchemes('https');
    ```
 
- * The `ApacheMatcherDumper` and `ApacheUrlMatcher` were removed since
+ * nnn The `ApacheMatcherDumper` and `ApacheUrlMatcher` were removed since
    the performance gains were minimal and it's hard to replicate the behaviour
    of PHP implementation.
 
- * The `getMatcherDumperInstance()` and `getGeneratorDumperInstance()` methods in the
+ * nnn The `getMatcherDumperInstance()` and `getGeneratorDumperInstance()` methods in the
    `Symfony\Component\Routing\Router` have been changed from `public` to `protected`.
 
- * Use the constants defined in the UrlGeneratorInterface for the $referenceType argument of the UrlGeneratorInterface::generate method.
+ * xxx Use the constants defined in the UrlGeneratorInterface for the $referenceType argument of the UrlGeneratorInterface::generate method.
 
    Before:
 
@@ -1095,15 +1095,15 @@ UPGRADE FROM 2.x to 3.0
 
 ### Security
 
- * The `vote()` method from the `VoterInterface` was changed to now accept arbitrary
+ * nnn The `vote()` method from the `VoterInterface` was changed to now accept arbitrary
    types and not only objects. You can rely on the new abstract `Voter` class introduced
    in 2.8 to ease integrating your own voters.
 
- * The `AbstractVoter` class was removed in favor of the new `Voter` class.
+ * nnn The `AbstractVoter` class was removed in favor of the new `Voter` class.
 
- * The `Resources/` directory was moved to `Core/Resources/`
+ * ppp The `Resources/` directory was moved to `Core/Resources/`
 
- * The `key` settings of `anonymous`, `remember_me` and `http_digest` are
+ * nnn The `key` settings of `anonymous`, `remember_me` and `http_digest` are
    renamed to `secret`.
 
    Before:
@@ -1192,14 +1192,14 @@ UPGRADE FROM 2.x to 3.0
    ));
    ```
 
- * The `AbstractVoter` class was removed. Instead, extend the new `Voter` class,
+ * nnn The `AbstractVoter` class was removed. Instead, extend the new `Voter` class,
    introduced in 2.8, and move your voting logic to the to the `supports($attribute, $subject)`
    and `voteOnAttribute($attribute, $object, TokenInterface $token)` methods.
 
- * The `vote()` method from the `VoterInterface` was changed to now accept arbitrary
+ * nnn The `vote()` method from the `VoterInterface` was changed to now accept arbitrary
    types, and not only objects.
 
- * The `supportsClass` and `supportsAttribute` methods were
+ * nnn The `supportsClass` and `supportsAttribute` methods were
    removed from the `VoterInterface` interface.
 
    Before:
@@ -1240,7 +1240,7 @@ UPGRADE FROM 2.x to 3.0
    }
    ```
 
- * The `AbstractVoter::isGranted()` method has been replaced by `Voter::voteOnAttribute()`.
+ * nnn The `AbstractVoter::isGranted()` method has been replaced by `Voter::voteOnAttribute()`.
 
    Before:
 
@@ -1270,35 +1270,35 @@ UPGRADE FROM 2.x to 3.0
    }
    ```
 
- * The `supportsAttribute()` and `supportsClass()` methods of the `AuthenticatedVoter`, `ExpressionVoter`,
+ * nnn The `supportsAttribute()` and `supportsClass()` methods of the `AuthenticatedVoter`, `ExpressionVoter`,
    and `RoleVoter` classes have been removed.
 
- * The `intention` option was renamed to `csrf_token_id` for all the authentication listeners.
+ * nnn The `intention` option was renamed to `csrf_token_id` for all the authentication listeners.
 
- * The `csrf_provider` option was renamed to `csrf_token_generator` for all the authentication listeners.
+ * nnn The `csrf_provider` option was renamed to `csrf_token_generator` for all the authentication listeners.
 
 ### SecurityBundle
 
- * The `intention` firewall listener setting was renamed to `csrf_token_id`.
+ * nnn The `intention` firewall listener setting was renamed to `csrf_token_id`.
 
- * The `csrf_provider` firewall listener setting was renamed to `csrf_token_generator`.
+ * nnn The `csrf_provider` firewall listener setting was renamed to `csrf_token_generator`.
 
 ### Serializer
 
- * The `setCamelizedAttributes()` method of the
+ * nnn The `setCamelizedAttributes()` method of the
    `Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer` and
    `Symfony\Component\Serializer\Normalizer\PropertyNormalizer` classes
    was removed.
 
- * The `Symfony\Component\Serializer\Exception\Exception` interface was removed
+ * nnn The `Symfony\Component\Serializer\Exception\Exception` interface was removed
    in favor of the new `Symfony\Component\Serializer\Exception\ExceptionInterface`.
 
 ### Translator
 
- * The `Translator::setFallbackLocale()` method has been removed in favor of
+ * nnn The `Translator::setFallbackLocale()` method has been removed in favor of
    `Translator::setFallbackLocales()`.
 
- * The visibility of the `locale` property has been changed from protected to private. Rely on `getLocale` and `setLocale`
+ * nnn The visibility of the `locale` property has been changed from protected to private. Rely on `getLocale` and `setLocale`
    instead.
 
    Before:
@@ -1360,18 +1360,18 @@ UPGRADE FROM 2.x to 3.0
     }
    ```
 
- * The `getMessages()` method of the `Symfony\Component\Translation\Translator`
+ * nnn The `getMessages()` method of the `Symfony\Component\Translation\Translator`
    class was removed. You should use the `getCatalogue()` method of the
    `Symfony\Component\Translation\TranslatorBagInterface`.
 
 ### Twig Bridge
 
- * The `twig:lint` command has been deprecated since Symfony 2.7 and will be
+ * ppp The `twig:lint` command has been deprecated since Symfony 2.7 and will be
    removed in Symfony 3.0. Use the `lint:twig` command instead.
 
- * The `render` tag is deprecated in favor of the `render` function.
+ * xxx The `render` tag is deprecated in favor of the `render` function.
 
- * The `form_enctype` helper was removed. You should use the new `form_start`
+ * xxx The `form_enctype` helper was removed. You should use the new `form_start`
    function instead.
 
    Before:
